@@ -1,0 +1,87 @@
+#WAP to accept List, perform either Insert, Delete, Update, or Exit program
+#functions, and ask permission to continue after end of a program
+
+
+val = eval(input("Enter List Elements: "))
+print ("The list is: ", val)
+while True:
+    print ("MAIN MENU")
+    print ("1.Insert")
+    print ("2.Delete")
+    print ("3.Update")
+    print ("4.Exit")
+    ch = int(input("Enter your choice (1/2/3/4): "))
+    if ch == 1:
+        item = int(input("Enter Item: "))
+        pos = int(input("Insert at which postion? "))
+        index = pos -1
+        val.insert(index, item)
+        print("Success! List is now: ", val)
+        ask = str(input("Do you wish to continue (Yes/No)? "))
+        if ask == ("Yes"):
+            continue;
+        else:
+            print ("Bye!")
+            break;
+    elif ch == 2:
+        print ("Deletion Menu")
+        print ('1. Delete Using Value')
+        print ('2. Delete Using Index')
+        print ('3. Delete a Sublist')
+        dch = int(input("Enter Choice (1/2/3): "))
+        if dch == 1:
+            item = int(input('Enter item to be deleted: '))
+            val.remove(item)
+            print ("List is now: ", val)
+            ask = str(input("Do you wish to continue (Yes/No)? "))
+            if ask == ("Yes"):
+                continue;
+            else:
+                print ("Bye!")
+                break;
+        elif dch == 2:
+            index = int(input("Enter Index of Item to be Deleted: "))
+            val.pop(index)
+            print("List is now: ", val)
+            ask = str(input("Do you wish to continue (Yes/No)? "))
+            if ask == ("Yes"):
+                continue;
+            else:
+                print ("Bye!")
+                break;
+        elif dch == 3:
+            l = int(input("Enter Lower Limit of List Slice to be Deleted: "))
+            h = int(input("Enter Upper Limit of List Slice to be Deleted: "))
+            del val[l:h]
+            print("List is now: ", val)
+            ask = str(input("Do you wish to continue (Yes/No)? "))
+            if ask == ("Yes"):
+                continue;
+            else:
+                print ("Bye!")
+                break;
+        else:
+            print ("Valid choices are 1/2/3 only.")
+            ask = str(input("Do you wish to continue (Yes/No)? "))
+            if ask == ("Yes"):
+                continue;
+            else:
+                print ("Bye!")
+                break;
+    elif ch == 3:
+        print ("Updating Menu")
+        a = int(input("Enter Updated Value: "))
+        b = int(input("Insert at which postion? "))
+        c = b - 1
+        val.pop(c)
+        val.insert(c,a)
+        print ("New List: ", val)
+        ask = str(input("Do you wish to continue (Yes/No)? "))
+        if ask == ("Yes"):
+            continue;
+        else:
+            print ("Bye!")
+            break;
+    elif ch ==4:
+        print ("Bye!")
+        break;
