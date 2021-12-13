@@ -31,17 +31,17 @@ while True:
                     break
         #2:leave
         else:
-            answer = int(input("\nYou're in a long corridor. 2) Go Right \n"))
+            answer = int(input("\nYou're in a long corridor. \n2) Go Right \n"))
             if answer == 2:
                 answer = int(input(
-                    "You walk down the hallway until you reach the cafeteria. It is connected to stairway. The cafeteria smells funky. You see that all the food here are just human organs...?! \nWhat do you do? \n1) Run to the stairway \n2) Eat the organs!"))
+                    "You walk down the hallway until you reach the cafeteria. It is connected to stairway. The cafeteria smells funky. You see that all the food here are just human organs...?! \nWhat do you do? \n1) Run to the stairway \n2) Eat the organs! \n"))
                 # 1: stairway
                 if answer == 1:
-                    answer = int(input("You're in the stairway. \nWhich way do you go? \n1) Up \n2) Down"))
+                    answer = int(input("You're in the stairway. \nWhich way do you go? \n1) Up \n2) Down \n"))
                     # 1: terrace
                     if answer == 1:
                         answer = int(input(
-                            "You're in the Terrace. The stars look great tonight. There's nothing much here. \nWhat do you do? \n1) Jump off the building \n2)Head back."))
+                            "You're in the Terrace. The stars look great tonight. There's nothing much here. \nWhat do you do? \n1) Jump off the building \n2)Head back. \n"))
                         if answer == 1:
                             print(
                                     "The stars looked pretty. You wished to join them after all that you've witnessed. You died.")
@@ -52,6 +52,20 @@ while True:
                             else:
                                 print("Thanks for playing :)")
                                 break
+                        elif answer == 2:
+                            answer = int(input("You're in the stairway. \nWhich way do you go? \n2) Down \n"))
+
+                # 2: cannibalism
+                elif answer == 2:
+                    print(
+                        "You try to eat the organs, but quickly realize that they were infected. You died. Perhaps cannibalism isn't the option.")
+                    ans = input("Restart Game? (Yes/No)").lower()
+                    if ans == "yes":
+                        print("RESTARTING...")
+                        continue
+                    else:
+                        print("Thanks for playing :)")
+                        break
 
     #2: cafeteria
     elif answer == 2:
@@ -59,10 +73,10 @@ while True:
             "You walk down the hallway until you reach the cafeteria. It is connected to stairway. The cafeteria smells funky. You see that all the food here are just human organs...?! \nWhat do you do? \n1) Run to the stairway \n2) Eat the organs!"))
         # 1: stairway
         if answer == 1:
-            answer = int(input("You're in the stairway. \nWhich way do you go? \n1) Up \n2) Down"))
+            answer = int(input("You're in the stairway. \nWhich way do you go? \n1) Up \n2) Down \n"))
             # 1: terrace
             if answer == 1:
-                answer = int(input("You're in the Terrace. The stars look great tonight. There's nothing much here. \nWhat do you do? \n1) Jump off the building \n2)Head back."))
+                answer = int(input("You're in the Terrace. The stars look great tonight. There's nothing much here. \nWhat do you do? \n1) Jump off the building \n2)Head back. \n"))
                 if answer == 1:
                     print("The stars looked pretty. You wished to join them after all that you've witnessed. You died.")
                     ans = input("Restart Game? (Yes/No)").lower()
