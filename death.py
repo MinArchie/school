@@ -1,17 +1,19 @@
 # a text-based adventure game set in a hospital
 
 # values: (keys)-> direction, (value)-> room
-
 rooms = {
-    "Corridor": {"West": "Bathroom", "East": "Cafeteria"},
-    "Bathroom": {"Explore": "Red or Blue","East": "Corridor"},
+    "Corridor": {"West": "Bathroom", "or East": "Cafeteria"},
+    "Bathroom": {"Explore": "Red or Blue","or East": "Corridor"},
     "Cafeteria": {"East": "Staircase"},
-    "Staircase": {"North": "Terrace", "South": "Waiting_Area"},
-    "Terrace": {"Jump": "Death", "South": "Staircase"},
-    "Waiting_Area": {"West": "Operating_Room", "East": "Morgue", "South": "Exit"},
+    "Staircase": {"North": "Terrace", "or South": "Waiting_Area"},
+    "Terrace": {"Jump": "Death", "or South": "Staircase"},
+    "Waiting_Area": {"West": "Operating_Room", "or East": "Morgue", "South": "Exit"},
     "Operating_Room": {"East": "Waiting_Area"},
     "Morgue": {"West": "Waiting_Area"}
 }
+
+
+# functions
 
 
 def corridor():
@@ -24,12 +26,14 @@ def corridor():
         possible_moves = rooms[location].keys()
         print("possible moves: ", *possible_moves)
 
-        direction = input("Move which direction? ").strip().lower()
+        direction = input("\nMove which direction? \n> ").strip().lower()
         print("You entered: ", direction)
 
         if direction == "west":
+            print()
             bathroom()
         elif direction == "east":
+            print()
             cafeteria()
 
 
@@ -39,22 +43,32 @@ def bathroom():
 
     print("You are in the ", location)
 
+    print("You head inside to wash your face.")
+    print("You hear knocking coming from the last stall.")
+    print("\nWhat do you do? Explore the knocking or Head East (go back to corridor) \n")
+
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? ").strip().lower()
+    direction = input("Move which direction? \n> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "east":
+        print()
         corridor()
     if direction == "explore":
+        print()
         print("You see a girl holding two papers; one Red, one Blue.")
-        answer = input("Which do you choose? \n1) Red \n2)Blue \n")
-        if answer == "1":
-            print("You died")
+        answer = input("Which do you choose? \n> Red \n> Blue \n> ").lower().strip()
+        if answer == "red":
+            print()
+            print("The girl pulls out a knife and stabs you.")
+            print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
             restart_seq()
-        elif answer == "2":
-            print("you died")
+        elif answer == "blue":
+            print()
+            print("The girl smiles and strangles you.")
+            print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
             restart_seq()
 
 
@@ -67,10 +81,11 @@ def cafeteria():
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? ").strip().lower()
+    direction = input("Move which direction? \n> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "east":
+        print()
         staircase()
 
 
@@ -83,12 +98,14 @@ def staircase():
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? ").strip().lower()
+    direction = input("Move which direction? \n> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "north":
+        print()
         terrace()
     elif direction == "south":
+        print()
         waiting_area()
 
 
@@ -101,12 +118,14 @@ def terrace():
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? ").strip().lower()
+    direction = input("Move which direction? \n> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "south":
+        print()
         staircase()
     elif direction == "jump":
+        print()
         print("You died")
         restart_seq()
 
@@ -121,16 +140,19 @@ def waiting_area():
         possible_moves = rooms[location].keys()
         print("possible moves: ", *possible_moves)
 
-        direction = input("Move which direction? ").strip().lower()
+        direction = input("Move which direction? \n> ").strip().lower()
         print("You entered: ", direction)
 
         if direction == "west":
+            print()
             operation_room()
         elif direction == "east":
+            print()
             morgue()
         elif direction == "south":
+            print()
             print("You won")
-        exit()
+            restart_seq()
 
 
 def operation_room():
@@ -142,10 +164,11 @@ def operation_room():
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? ").strip().lower()
+    direction = input("Move which direction? \n> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "east":
+        print()
         waiting_area()
 
 
@@ -158,17 +181,21 @@ def morgue():
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? ").strip().lower()
+    direction = input("Move which direction? \n> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "west":
+        print()
         waiting_area()
 
 
 def restart_seq():
-    answer1 = input("Restart Game? (Yes/No)").strip().lower()
+    answer1 = input("Restart Game? (Yes/No) \n> ").strip().lower()
     if answer1 == "yes":
+        print(""*5)
         print("RESTARTING...")
+        print("You wake up groggy and unsure. It's dark, so you turn on the light.")
+        print("You realize you're in a hospital. You decide to get out and explore.")
         corridor()
 
     elif answer1 == "no":
@@ -176,4 +203,11 @@ def restart_seq():
         quit()
 
 
+# call stuff
+
+print()
+print()
+print("You wake up groggy and unsure. It's dark, so you turn on the light.")
+print("You realize you're in a hospital. You decide to get out and explore.")
+print()
 corridor()
