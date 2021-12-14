@@ -233,7 +233,7 @@ def password():
                 tries += 1
                 guess = input("Guess the 4-letter word: ")
             if guess != word and tries == 2:
-                print("You failed to guess the word. "
+                print("You failed to guess the word. ")
                 print("You watch as the hospital goes into lockdown, sealing you inside for eternity.")
                 print("With these monsters.")
                 print("You died.\n")
