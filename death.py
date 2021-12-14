@@ -12,7 +12,7 @@ rooms = {
     "Waiting_Area": {"North": "Staircase", "or South": "Exit", "or East": "Morgue", "or West": "Operating_Room"},
     "Operating_Room": {"East": "Waiting_Area"},
     "Morgue": {"West": "Waiting_Area"},
-    "Exit": {"North": "Waiting_Area", "Try": "Finish"}
+    "Exit": {"North": "Waiting_Area", "or Try": "Finish"}
 }
 
 
@@ -24,6 +24,10 @@ def corridor():
     direction = ""
 
     while direction != "exit":
+        print()
+        print()
+        print("_______________________")
+        print("_______________________")
         print("You are in the ", location)
 
         possible_moves = rooms[location].keys()
@@ -44,6 +48,9 @@ def bathroom():
     location = "Bathroom"
     direction = ""
 
+    print()
+    print()
+    print()
     print("You are in the ", location)
 
     print("You head inside to wash your face.")
@@ -67,6 +74,9 @@ def bathroom():
         corridor()
     if direction == "explore":
         print()
+        print()
+        print()
+        print("■                    ▢")
         print("You see a girl holding two papers; one Red, one Blue. Her eyes are completely black")
         time.sleep(2)
         answer = input("Which do you choose? \n> Red \n> Blue \n>> ").lower().strip()
@@ -75,12 +85,22 @@ def bathroom():
             print()
             print("The girl pulls out a knife and stabs you.")
             print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
+            print()
+            print("------------------")
+            print("|    GAME OVER   |")
+            print("------------------")
+            print()
             restart_seq()
 
         elif answer == "blue":
             print()
             print("The girl gives you a creepy smiles and strangles you.")
             print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
+            print()
+            print("------------------")
+            print("|    GAME OVER   |")
+            print("------------------")
+            print()
             restart_seq()
 
 
@@ -109,6 +129,11 @@ def cafeteria():
         print()
         print("You try to eat the organs, but quickly realize that they were infected. You died.")
         print("Perhaps cannibalism isn't the option.")
+        print()
+        print("------------------")
+        print("|    GAME OVER   |")
+        print("------------------")
+        print()
         restart_seq()
 
 
@@ -207,6 +232,12 @@ def terrace():
         print("UNLOCKED SECRET ENDING")
         time.sleep(2)
 
+        print()
+        print("------------------")
+        print("|    GAME OVER   |")
+        print("------------------")
+        print()
+
         restart_seq()
 
 
@@ -215,6 +246,8 @@ def waiting_area():
     direction = ""
 
     while direction != "exit":
+        
+        print()
         print("You are in the ", location)
 
         print("You feel sick to the stomach, the sight of human organs still plaguing your thoughts.")
@@ -250,6 +283,7 @@ def password():
 
         print("There's a four digit code that you need to enter to get out.")
         print("Do you wish to try? Remember, you have a limited amount of attempts")
+        print("Head North if you think you aren't ready.")
         print("")
 
         possible_moves = rooms[location].keys()
@@ -275,9 +309,21 @@ def password():
                 print("You watch as the hospital goes into lockdown, sealing you inside for eternity.")
                 print("With these monsters.")
                 print("You died.\n")
+                print()
+                print("------------------")
+                print("|    GAME OVER   |")
+                print("------------------")
+                print()
                 restart_seq()
 
-            print("Well done you guessed correctly! The word was ECHO.")
+            print()
+            print("CORRECT PASSWORD")
+            print("You made it out alive.")
+            print()
+            print("------------------")
+            print("|     YOU WON    |")
+            print("------------------")
+            print()
             restart_seq()
 
 
@@ -338,19 +384,19 @@ def restart_seq():
 print()
 print()
 print()
-print("*********************")
-print("*       TITLE       *")
-print("*********************")
+print("********************")
+print("*   LUCID DREAMS   *")
+print("********************")
 print()
 print()
 print()
 time.sleep(2)
 print("Welcome!")
-print("The rules of the game are simple. Find a way to escape.")
+print("The rules of the game are simple. Type the command from given options. Find a way to escape.")
 time.sleep(2)
 print("GAME LOADING...")
 time.sleep(1)
-print("HINT: use lowercases only")
+print("TIP: use lower-case characters only")
 time.sleep(1)
 print("LOADING...")
 print()
@@ -360,4 +406,5 @@ time.sleep(3)
 print("You wake up groggy and unsure. It's dark, so you turn on the light.")
 print("You realize you're in a hospital. You decide to get out and explore.")
 print()
+time.sleep(2)
 corridor()
