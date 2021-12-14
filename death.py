@@ -1,16 +1,18 @@
 # a text-based adventure game set in a hospital
 
-#values: (keys)-> direction, (value)-> room
+# values: (keys)-> direction, (value)-> room
+
 rooms = {
     "Corridor": {"West": "Bathroom", "East": "Cafeteria"},
-    "Bathroom": {"East": "Corridor"},
+    "Bathroom": {"Explore": "Red or Blue","East": "Corridor"},
     "Cafeteria": {"East": "Staircase"},
     "Staircase": {"North": "Terrace", "South": "Waiting_Area"},
-    "Terrace": {"South": "Staircase"},
+    "Terrace": {"Jump": "Death", "South": "Staircase"},
     "Waiting_Area": {"West": "Operating_Room", "East": "Morgue", "South": "Exit"},
     "Operating_Room": {"East": "Waiting_Area"},
     "Morgue": {"West": "Waiting_Area"}
 }
+
 
 def corridor():
     location = "Corridor"
@@ -45,6 +47,15 @@ def bathroom():
 
     if direction == "east":
         corridor()
+    if direction == "explore":
+        print("You see a girl holding two papers; one Red, one Blue.")
+        answer = input("Which do you choose? \n1) Red \n2)Blue \n")
+        if answer == "1":
+            print("You died")
+            restart_seq()
+        elif answer == "2":
+            print("you died")
+            restart_seq()
 
 
 def cafeteria():
@@ -95,6 +106,9 @@ def terrace():
 
     if direction == "south":
         staircase()
+    elif direction == "jump":
+        print("You died")
+        restart_seq()
 
 
 def waiting_area():
@@ -115,7 +129,7 @@ def waiting_area():
         elif direction == "east":
             morgue()
         elif direction == "south":
-            print ("You won")
+            print("You won")
         exit()
 
 
@@ -151,6 +165,15 @@ def morgue():
         waiting_area()
 
 
+def restart_seq():
+    answer1 = input("Restart Game? (Yes/No)").strip().lower()
+    if answer1 == "yes":
+        print("RESTARTING...")
+        corridor()
+
+    elif answer1 == "no":
+        print("Thank you for playing :)")
+        quit()
 
 
 corridor()
