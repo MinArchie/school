@@ -3,11 +3,11 @@
 # values: (keys)-> direction, (value)-> room
 rooms = {
     "Corridor": {"West": "Bathroom", "or East": "Cafeteria"},
-    "Bathroom": {"Explore": "Red or Blue","or East": "Corridor"},
-    "Cafeteria": {"East": "Staircase"},
-    "Staircase": {"North": "Terrace", "or South": "Waiting_Area"},
+    "Bathroom": {"Explore": "Red or Blue", "or East": "Corridor"},
+    "Cafeteria": {"East": "Staircase", "or West": "Corridor"},
+    "Staircase": {"West": "Cafeteria", "or North": "Terrace", "or South": "Waiting_Area"},
     "Terrace": {"Jump": "Death", "or South": "Staircase"},
-    "Waiting_Area": {"West": "Operating_Room", "or East": "Morgue", "South": "Exit"},
+    "Waiting_Area": {"North": "Staircase", "or South": "Exit", "or East": "Morgue", "or West": "Operating_Room"},
     "Operating_Room": {"East": "Waiting_Area"},
     "Morgue": {"West": "Waiting_Area"}
 }
@@ -87,13 +87,16 @@ def cafeteria():
     if direction == "east":
         print()
         staircase()
+    elif direction == "west":
+        print()
+        corridor()
 
 
 def staircase():
     location = "Staircase"
     direction = ""
 
-    print("You are in the, ", location)
+    print("You are in the ", location)
 
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
@@ -107,6 +110,9 @@ def staircase():
     elif direction == "south":
         print()
         waiting_area()
+    elif direction == "west":
+        print()
+        cafeteria()
 
 
 def terrace():
@@ -146,6 +152,9 @@ def waiting_area():
         if direction == "west":
             print()
             operation_room()
+        elif direction == "north":
+            print()
+            staircase()
         elif direction == "east":
             print()
             morgue()
