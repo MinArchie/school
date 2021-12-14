@@ -70,14 +70,14 @@ def bathroom():
         print("You see a girl holding two papers; one Red, one Blue. Her eyes are completely black")
         time.sleep(2)
         answer = input("Which do you choose? \n> Red \n> Blue \n>> ").lower().strip()
+
         if answer == "red":
-            time.sleep(1)
             print()
             print("The girl pulls out a knife and stabs you.")
             print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
             restart_seq()
+
         elif answer == "blue":
-            time.sleep(1)
             print()
             print("The girl gives you a creepy smiles and strangles you.")
             print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
@@ -91,12 +91,12 @@ def cafeteria():
     print("You are in the ", location)
 
     print("It seems to be connected to the stairway.")
-    time.sleep(2)
+    time.sleep(1)
     print("Suddenly, you smell something weird, like rotten meat.")
     print("You cautiously look at the food there, and discover that they all look like organs.")
     time.sleep(2)
     print("Human organs...")
-    time.sleep(1)
+    time.sleep(2)
     answer1 = input("What do you do? \n>Run to the staircase! \n>Eat the organs! \n(Type Run or Eat) \n>> ").lower().strip()
     if answer1 == "run":
         print()
@@ -155,7 +155,17 @@ def terrace():
     location = "Terrace"
     direction = ""
 
+    print()
+    print()
+    print()
+    print("* ,   . *   `. *` . . *,")
+    print("  .  *  ` . * ,  . `  . ")
+
     print("You are in the, ", location)
+
+    print("The stars look pretty tonight.")
+    print("You wonder what exactly you're doing here.")
+    print("You're not sure what exactly you want to do either.")
 
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
@@ -165,10 +175,38 @@ def terrace():
 
     if direction == "south":
         print()
+        print("As tempting as a trip to the stars sounds like, you decide to keep fighting.")
+        print("You could come back here anytime, anyway.")
         staircase()
+
+    #secret ending
+
     elif direction == "jump":
         print()
-        print("You died")
+        print("The stars looked pretty, so you decided to join them.")
+        print("You didn't really want to fight anymore.")
+        print("This place looks like it isn't worth it anyway.")
+        print("You died.")
+        time.sleep(6)
+        print("LOADING...")
+        time.sleep(2)
+        print("You wake up.")
+        time.sleep(1)
+        print("In a white room.")
+        time.sleep(1)
+        print("You get a sense of deja-vu.")
+        time.sleep(1)
+        print("You see the door opening")
+        time.sleep(2)
+        print("A nurse walks in, the one that you recognize. You remember that he checks in on you frequently.")
+        print('"It is time for your pills again," he says. "I hope you weren\'t hallucinating again."')
+        print("Ah well, that explains a lot.")
+        time.sleep(3)
+        print()
+        print()
+        print("UNLOCKED SECRET ENDING")
+        time.sleep(2)
+
         restart_seq()
 
 
@@ -279,7 +317,7 @@ def morgue():
 
 
 def restart_seq():
-    answer1 = input("Restart Game? (Yes/No) \n>> ").strip().lower()
+    answer1 = input("Replay Game? (Yes/No) \n>> ").strip().lower()
     if answer1 == "yes":
         print(""*5)
         print("RESTARTING...")
