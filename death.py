@@ -42,6 +42,13 @@ def corridor():
         elif direction == "right":
             print()
             cafeteria()
+        else:
+            print()
+            print("Invalid move! \nOnly Enter Valid Statements.")
+            print()
+            print()
+            print()
+            corridor()
 
 
 def bathroom():
@@ -73,36 +80,58 @@ def bathroom():
         print()
         time.sleep(1)
         corridor()
-    if direction == "explore":
+    elif direction == "explore":
+        print()
+        time.sleep(1)
+        bathroom_ex()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
         print()
         print()
         print()
-        print("■                    ▢")
-        print("You see a girl holding two papers; one Red, one Blue. Her eyes are completely black")
-        time.sleep(2)
-        answer = input("Which do you choose? \n> Red \n> Blue \n>> ").lower().strip()
+        time.sleep(1)
+        bathroom()
 
-        if answer == "red":
-            print()
-            print("The girl pulls out a knife and stabs you.")
-            print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
-            print()
-            print("------------------")
-            print("|    GAME OVER   |")
-            print("------------------")
-            print()
-            restart_seq()
 
-        elif answer == "blue":
-            print()
-            print("The girl gives you a creepy smiles and strangles you.")
-            print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
-            print()
-            print("------------------")
-            print("|    GAME OVER   |")
-            print("------------------")
-            print()
-            restart_seq()
+def bathroom_ex():
+    location = "Bathroom"
+    direction = ""
+
+    print("You see a girl holding two papers; one Red, one Blue. Her eyes are completely black")
+    time.sleep(2)
+    answer = input("Which do you choose? \n> Red \n> Blue \n>> ").lower().strip()
+
+    if answer == "red":
+        print()
+        print("The girl pulls out a knife and stabs you.")
+        print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
+        print()
+        print("------------------")
+        print("|    GAME OVER   |")
+        print("------------------")
+        print()
+        restart_seq()
+
+    elif answer == "blue":
+        print()
+        print("The girl gives you a creepy smiles and strangles you.")
+        print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
+        print()
+        print("------------------")
+        print("|    GAME OVER   |")
+        print("------------------")
+        print()
+        restart_seq()
+
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        print()
+        print()
+        print()
+        time.sleep(1)
+        bathroom_ex()
 
 
 def cafeteria():
@@ -118,13 +147,12 @@ def cafeteria():
     time.sleep(2)
     print("Human organs...")
     time.sleep(2)
-    answer1 = input("What do you do? \n>Run to the staircase! \n>Eat the organs! \n(Type Run or Eat) \n>> ").lower().strip()
+    answer1 = input("What do you do? \n>Run to the staircase! \n>Eat the organs! \n>Go Back to Corridor! \n(Type Run or Eat or Back) \n>> ").lower().strip()
     if answer1 == "run":
         print()
         print("The sight of the 'food' still makes you uncomfortable")
         print("Perhaps you could go up for some fresh air or go down.")
         staircase()
-
 
     elif answer1 == "eat":
         print()
@@ -136,6 +164,18 @@ def cafeteria():
         print("------------------")
         print()
         restart_seq()
+    elif answer1 == "back":
+        print()
+        time.sleep(1)
+        corridor()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        time.sleep(1)
+        print()
+        print()
+        print()
+        cafeteria()
 
 
     possible_moves = rooms[location].keys()
@@ -175,6 +215,13 @@ def staircase():
     elif direction == "back":
         print()
         cafeteria()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        time.sleep(1)
+        print()
+        print()
+        staircase()
 
 
 def terrace():
@@ -241,6 +288,14 @@ def terrace():
         print()
 
         restart_seq()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        time.sleep(1)
+        print()
+        print()
+        print()
+        terrace()
 
 
 def waiting_area():
@@ -277,6 +332,14 @@ def waiting_area():
         elif direction == "exit":
             print()
             password()
+        else:
+            print()
+            print("Invalid move! \nOnly Enter Valid Statements.")
+            time.sleep(1)
+            print()
+            print()
+            print()
+            waiting_area()
 
 
 def password():
@@ -300,6 +363,7 @@ def password():
         if direction == "back":
             print()
             waiting_area()
+
         elif direction == "try":
             word = "echo"
             guess = input("Guess the 4-letter word (You have only 2 tries): ")
@@ -341,7 +405,14 @@ def password():
             print("------------------")
             print()
             restart_seq()
-
+        else:
+            print()
+            print("Invalid move! \nOnly Enter Valid Statements.")
+            time.sleep(1)
+            print()
+            print()
+            print()
+            password()
 
 
 def operation_room():
@@ -361,6 +432,14 @@ def operation_room():
     if direction == "back":
         print()
         waiting_area()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        time.sleep(1)
+        print()
+        print()
+        print()
+        operation_room()
 
 
 def morgue():
@@ -380,6 +459,14 @@ def morgue():
     if direction == "back":
         print()
         waiting_area()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        time.sleep(1)
+        print()
+        print()
+        print()
+        morgue()
 
 
 def restart_seq():
@@ -397,6 +484,13 @@ def restart_seq():
     elif answer1 == "no":
         print("Thank you for playing :)")
         quit()
+    else:
+        print()
+        print("Sorry, I don't understand. English please!")
+        time.sleep(1)
+        print()
+        print()
+        restart_seq()
 
 
 # call stuff
