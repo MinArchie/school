@@ -4,15 +4,15 @@ import time
 
 # values: (keys)-> direction, (value)-> room
 rooms = {
-    "Corridor": {"West": "Bathroom", "or East": "Cafeteria"},
-    "Bathroom": {"Explore": "Red or Blue", "or East": "Corridor"},
-    "Cafeteria": {"East": "Staircase", "or West": "Corridor"},
+    "Corridor": {"Left": "Bathroom", "or Right": "Cafeteria"},
+    "Bathroom": {"Explore": "Red or Blue", "or Back": "Corridor"},
+    "Cafeteria": {"Right": "Staircase", "or Left": "Corridor"},
     "Staircase": {"Back to Cafeteria (Type 'Back')": "Cafeteria", "or Up": "Terrace", "or Down": "Waiting_Area"},
-    "Terrace": {"Jump": "Death", "or South": "Staircase"},
-    "Waiting_Area": {"North": "Staircase", "or South": "Exit", "or East": "Morgue", "or West": "Operating_Room"},
-    "Operating_Room": {"East": "Waiting_Area"},
-    "Morgue": {"West": "Waiting_Area"},
-    "Exit": {"North": "Waiting_Area", "or Try": "Finish"}
+    "Terrace": {"Jump": "Death", "or Back": "Staircase"},
+    "Waiting_Area": {"Up": "Staircase", "or Exit": "Exit", "or Right": "Morgue", "or Left": "Operating_Room"},
+    "Operating_Room": {"Back": "Waiting_Area"},
+    "Morgue": {"Back": "Waiting_Area"},
+    "Exit": {"Back": "Waiting_Area", "or Try": "Finish"}
 }
 
 
@@ -36,10 +36,10 @@ def corridor():
         direction = input("\nMove which direction? \n> ").strip().lower()
         print("You entered: ", direction)
 
-        if direction == "west":
+        if direction == "left":
             print()
             bathroom()
-        elif direction == "east":
+        elif direction == "right":
             print()
             cafeteria()
 
@@ -61,7 +61,7 @@ def bathroom():
     time.sleep(1)
     print("*knock*.... *knock*")
     time.sleep(1)
-    print("\nWhat do you do? Explore the knocking or Head East (go back to corridor) \n")
+    print("\nWhat do you do? Explore the knocking or Head Back (go back to corridor) \n")
 
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
@@ -69,8 +69,9 @@ def bathroom():
     direction = input("Decision? \n> ").strip().lower()
     print("You entered: ", direction)
 
-    if direction == "east":
+    if direction == "back":
         print()
+        time.sleep(1)
         corridor()
     if direction == "explore":
         print()
@@ -143,12 +144,12 @@ def cafeteria():
     direction = input("Move which direction? \n>> ").strip().lower()
     print("You entered: ", direction)
 
-    if direction == "east":
+    if direction == "right":
         print("The sight of the 'food' still makes you uncomfortable")
         print("Perhaps you could go up for some fresh air or go down.")
         staircase()
 
-    elif direction == "west":
+    elif direction == "left":
         print()
         corridor()
 
@@ -191,14 +192,15 @@ def terrace():
     print("The stars look pretty tonight.")
     print("You wonder what exactly you're doing here.")
     print("You're not sure what exactly you want to do either.")
+    print("Would you like to go back downstairs or...")
 
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? \n>> ").strip().lower()
+    direction = input("Decision? \n>> ").strip().lower()
     print("You entered: ", direction)
 
-    if direction == "south":
+    if direction == "back":
         print()
         print("As tempting as a trip to the stars sounds like, you decide to keep fighting.")
         print("You could come back here anytime, anyway.")
@@ -246,13 +248,16 @@ def waiting_area():
     direction = ""
 
     while direction != "exit":
-        
+
         print()
         print("You are in the ", location)
 
         print("You feel sick to the stomach, the sight of human organs still plaguing your thoughts.")
         print("Never the less, you carry on.")
         print("")
+        print("The Waiting_Area is connected to two other rooms and the Exit.")
+        print("You may also go back up the staircase. (Type 'up')")
+        print()
 
         possible_moves = rooms[location].keys()
         print("possible moves: ", *possible_moves)
@@ -260,16 +265,16 @@ def waiting_area():
         direction = input("Move which direction? \n>> ").strip().lower()
         print("You entered: ", direction)
 
-        if direction == "west":
+        if direction == "left":
             print()
             operation_room()
-        elif direction == "north":
+        elif direction == "up":
             print()
             staircase()
-        elif direction == "east":
+        elif direction == "right":
             print()
             morgue()
-        elif direction == "south":
+        elif direction == "exit":
             print()
             password()
 
@@ -283,7 +288,7 @@ def password():
 
         print("There's a four digit code that you need to enter to get out.")
         print("Do you wish to try? Remember, you have a limited amount of attempts")
-        print("Head North if you think you aren't ready.")
+        print("Head Back if you think you aren't ready.")
         print("")
 
         possible_moves = rooms[location].keys()
@@ -292,7 +297,7 @@ def password():
         direction = input("Move which direction? \n>> ").strip().lower()
         print("You entered: ", direction)
 
-        if direction == "north":
+        if direction == "back":
             print()
             waiting_area()
         elif direction == "try":
@@ -301,19 +306,30 @@ def password():
             tries = 1
 
             if guess != word:
-                print("Wrong answer. Try again, and get it right if you wish to live.")
+                print()
+                print("INCORRECT PASSWORD.")
+                print("Try again, and get it right if you wish to live.")
                 tries += 1
                 guess = input("Guess the 4-letter word: ")
             if guess != word and tries == 2:
-                print("You failed to guess the word. ")
+                time.sleep(1)
+                print("INCORRECT PASSWORD")
+                time.sleep(1)
+                print("ACCESS DENIED")
+                time.sleep(1)
+                print("INITIATING LOCKDOWN...")
+                time.sleep(1)
                 print("You watch as the hospital goes into lockdown, sealing you inside for eternity.")
+                time.sleep(1.5)
                 print("With these monsters.")
                 print("You died.\n")
                 print()
+                time.sleep(1)
                 print("------------------")
                 print("|    GAME OVER   |")
                 print("------------------")
                 print()
+                time.sleep(1)
                 restart_seq()
 
             print()
@@ -332,15 +348,17 @@ def operation_room():
     location = "Operating_Room"
     direction = ""
 
-    print("You are in the, ", location)
+    print("You are in the ", location)
 
+    print()
+    print("You can go Back to the Waiting_Area")
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
     direction = input("Move which direction? \n>> ").strip().lower()
     print("You entered: ", direction)
 
-    if direction == "east":
+    if direction == "back":
         print()
         waiting_area()
 
@@ -349,15 +367,17 @@ def morgue():
     location = "Morgue"
     direction = ""
 
-    print("You are in the, ", location)
+    print("You are in the ", location)
 
+    print()
+    print("You can go back to the Waiting_Area")
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
     direction = input("Move which direction? \n>> ").strip().lower()
     print("You entered: ", direction)
 
-    if direction == "west":
+    if direction == "back":
         print()
         waiting_area()
 
@@ -408,3 +428,5 @@ print("You realize you're in a hospital. You decide to get out and explore.")
 print()
 time.sleep(2)
 corridor()
+
+
