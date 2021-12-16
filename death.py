@@ -64,19 +64,10 @@ def bathroom():
 
     print("You head inside to wash your face.")
     time.sleep(1)
-    print("While washing, something caught your eyes.")
-    time.sleep(1)
-    print("It's a Spiked-razor! ")
-    print("Should you take it? ")
-    print("But what could you possibly use it for?")
-    print()
-    time.sleep(1)
-    print("Pick it up?")
-    take_razor()
     print()
     print()
     time.sleep(2)
-    print("Suddenly, You hear knocking coming from the last stall.")
+    print("Suddenly, You hear knocking coming from the last toilet stall.")
     time.sleep(2)
     print("*knock*")
     time.sleep(1)
@@ -108,17 +99,17 @@ def bathroom():
         bathroom()
 
 
-def take_razor():
-    take_the_razor = input("Yes/No: \n>> ").lower().strip()
+def take_crowbar():
+    take_the_crowbar = input("Yes/No: \n>> ").lower().strip()
 
-    if take_the_razor == "yes":
-        if "spiked-razor" in inventory:
+    if take_the_crowbar == "yes":
+        if "crowbar" in inventory:
             print("You already have this item!")
             print("Inventory:")
             print(inventory)
-        elif "spiked-razor" not in inventory:
-            add_to_inventory("spiked-razor")
-            print("SPIKED-RAZOR added to inventory")
+        elif "crowbar" not in inventory:
+            add_to_inventory("crowbar")
+            print("CROWBAR added to inventory")
             print("Inventory:")
             print(inventory)
             time.sleep(1)
@@ -130,15 +121,15 @@ def take_razor():
             print()
             print()
             print()
-            take_the_razor = input("Take Spiked-razor? (Yes/No): \n>> ")
-            if "Spiked-razor" in inventory:
+            take_the_crowbar = input("Take Crowbar? (Yes/No): \n>> ")
+            if "crowbar" in inventory:
                 print("You already have this item!")
                 print("Inventory:")
                 print(inventory)
                 waiting_area()
 
-    elif take_the_razor == "no":
-        print("You leave the Spiked-razor in the Bathroom.")
+    elif take_the_crowbar == "no":
+        print("You leave the Crowbar in the Terrace.")
         time.sleep(1)
 
     else:
@@ -148,8 +139,8 @@ def take_razor():
         print()
         print()
         print()
-        take_the_razor = input("Take Spiked-razor? (Yes/No): \n>> ")
-        if "Spiked-razor" in inventory:
+        take_the_crowbar = input("Take Crowbar? (Yes/No): \n>> ")
+        if "crowbar" in inventory:
             print("You already have this item!")
             print("Inventory:")
             print(inventory)
@@ -333,10 +324,21 @@ def terrace():
     print()
     print()
     print()
+    print("On the way up the stairs, something catches your eye.")
+    time.sleep(1)
+    print("It's a Crowbar! ")
+    print("Should you take it? ")
+    print("But what could you possibly use it for?")
+    print()
+    time.sleep(1)
+    print("Pick it up?")
+    take_crowbar()
+    print()
+    print()
     print("* ,   . +   `. *` . . +,   *  ` . + ,  . `  .")
     print("  .  *  ` . + ,  . `  .   . +   `. *` . . + `")
 
-    print("You are in the, ", location)
+    print("You are in the ", location)
 
     print("The stars look pretty tonight.")
     print("You wonder what exactly you're doing here.")
