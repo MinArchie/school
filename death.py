@@ -97,17 +97,35 @@ def bathroom():
 
 
 def bathroom_ex():
-    location = "Bathroom"
+    location = "Bathroom Stall"
     direction = ""
 
-    print("You see a girl holding two papers; one Red, one Blue. Her eyes are completely black")
+    print()
+    print()
+    print()
+    print("You are in the ", location)
+    print()
+    time.sleep(1)
+    print("You see a girl holding out two cards; one Red, one Blue. Her eyes and hair are completely Black.")
     time.sleep(2)
-    answer = input("Which do you choose? \n> Red \n> Blue \n>> ").lower().strip()
+    print("You remember reading about a story of a ghost that kills you regardless of the color you choose.")
+    time.sleep(1)
+    print("You wonder if your fate here is to die in a similar way.")
+    print()
+    time.sleep(1.5)
+    print("Scared, you try to move out of the stall, only to find your feet stuck to the ground.")
+    time.sleep(1)
+    print("She won't let you go without making a decision.")
+    time.sleep(2)
+    answer = input("Which color do you choose? \n>> ").lower().strip()
 
     if answer == "red":
         print()
-        print("The girl pulls out a knife and stabs you.")
-        print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
+        print("The red card materializes into a knife. The girl's Black eyes twinkle as her arm extends to stab you.")
+        print("You died.")
+        print()
+        print("Wrong Decision.")
+        print("Perhaps next time, you could try picking a color you see on her.")
         print()
         print("------------------")
         print("|    GAME OVER   |")
@@ -117,14 +135,38 @@ def bathroom_ex():
 
     elif answer == "blue":
         print()
-        print("The girl gives you a creepy smiles and strangles you.")
-        print("Looks Like Curiosity Killed the Cat. Should have retreated when you had the chance. Better luck next time!")
+        print("The girl gives you a creepy smile as her head tilts down, her Black hair completely covering her face.")
+        print("Her arms quickly extend unnaturally, reaching towards your neck to strangle you.")
+        print("You died.")
+        print()
+        print("Perhaps next time, you could try picking a color you see on her.")
         print()
         print("------------------")
         print("|    GAME OVER   |")
         print("------------------")
         print()
         restart_seq()
+
+    elif answer == "black":
+        print()
+        print("Ah. Interesting. You choose a completely different color.")
+        time.sleep(2)
+        print("The Red and Blue papers disappear from the girl's extended arms.")
+        time.sleep(2)
+        print("Slowly, she turns her head to the side, not stopping until it did a complete 180 degree turn.")
+        time.sleep(2)
+        print("She makes no other move.")
+        print()
+        time.sleep(2)
+        print("You let your eyes focus on the back of her head, and notice the letter 'H' written on it")
+        print()
+        time.sleep(2)
+        print("You get a feeling that this is important.")
+        print()
+        time.sleep(2)
+        print("Seeing as nothing more happened, you head back to the corridor.")
+        time.sleep(1.5)
+        corridor()
 
     else:
         print()
@@ -339,9 +381,6 @@ def waiting_area():
             print("You see a door that leads to the cleaning closet.")
             print("In there you find a bottle of pepper spray")
             print("Pick it up?")
-
-
-
             take_spray()
 
         else:
@@ -599,6 +638,8 @@ time.sleep(2)
 print("GAME LOADING...")
 time.sleep(1)
 print("TIP: use lower-case characters only")
+time.sleep(1)
+print("You may use items from your inventory, but they might not always work for the situation.")
 time.sleep(1)
 print("LOADING...")
 print()
