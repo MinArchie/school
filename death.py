@@ -144,6 +144,12 @@ def take_crowbar():
             print("You already have this item!")
             print("Inventory:")
             print(inventory)
+        elif "crowbar" not in inventory:
+            add_to_inventory("crowbar")
+            print("CROWBAR added to inventory")
+            print("Inventory:")
+            print(inventory)
+            time.sleep(1)
 
 
 def bathroom_ex():
@@ -439,11 +445,16 @@ def waiting_area():
             print()
             password()
         elif direction == "inspect":
-            print("You navigate your way through the chairs.")
-            print("You see a door that leads to the cleaning closet.")
-            print("In there you find a bottle of pepper spray")
-            print("Pick it up?")
-            take_spray()
+            if 'pepper spray' not in inventory:
+                print("You navigate your way through the chairs.")
+                print("You see a door that leads to the cleaning closet.")
+                print("In there you find a bottle of pepper spray")
+                print("Pick it up?")
+                take_spray()
+            elif 'pepper spray' in inventory:
+                print()
+                print("You've already searched the area")
+
 
         else:
             print()
@@ -484,6 +495,14 @@ def take_spray():
                 print("Inventory:")
                 print(inventory)
                 waiting_area()
+            elif "pepper spray" not in inventory:
+                add_to_inventory("pepper spray")
+                print("PEPPER SPRAY added to inventory")
+                print("Inventory:")
+                print(inventory)
+                print("You head back to the waiting_area")
+                time.sleep(1)
+                waiting_area()
 
     elif take_the_spray == "no":
         print("You leave the Pepper Spray in the cabinet.")
@@ -503,6 +522,14 @@ def take_spray():
             print("You already have this item!")
             print("Inventory:")
             print(inventory)
+            waiting_area()
+        elif "pepper spray" not in inventory:
+            add_to_inventory("pepper spray")
+            print("PEPPER SPRAY added to inventory")
+            print("Inventory:")
+            print(inventory)
+            print("You head back to the waiting_area")
+            time.sleep(1)
             waiting_area()
 
 
