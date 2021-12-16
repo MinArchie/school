@@ -64,7 +64,19 @@ def bathroom():
 
     print("You head inside to wash your face.")
     time.sleep(1)
-    print("You hear knocking coming from the last stall.")
+    print("While washing, something caught your eyes.")
+    time.sleep(1)
+    print("It's a Spiked-razor! ")
+    print("Should you take it? ")
+    print("But what could you possibly use it for?")
+    print()
+    time.sleep(1)
+    print("Pick it up?")
+    take_razor()
+    print()
+    print()
+    time.sleep(2)
+    print("Suddenly, You hear knocking coming from the last stall.")
     time.sleep(2)
     print("*knock*")
     time.sleep(1)
@@ -96,6 +108,53 @@ def bathroom():
         bathroom()
 
 
+def take_razor():
+    take_the_razor = input("Yes/No: \n>> ").lower().strip()
+
+    if take_the_razor == "yes":
+        if "spiked-razor" in inventory:
+            print("You already have this item!")
+            print("Inventory:")
+            print(inventory)
+        elif "spiked-razor" not in inventory:
+            add_to_inventory("spiked-razor")
+            print("SPIKED-RAZOR added to inventory")
+            print("Inventory:")
+            print(inventory)
+            time.sleep(1)
+
+        else:
+            print()
+            print("Invalid move! \nOnly Enter Valid Statements.")
+            time.sleep(1)
+            print()
+            print()
+            print()
+            take_the_razor = input("Take Spiked-razor? (Yes/No): \n>> ")
+            if "Spiked-razor" in inventory:
+                print("You already have this item!")
+                print("Inventory:")
+                print(inventory)
+                waiting_area()
+
+    elif take_the_razor == "no":
+        print("You leave the Spiked-razor in the Bathroom.")
+        time.sleep(1)
+
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        time.sleep(1)
+        print()
+        print()
+        print()
+        take_the_razor = input("Take Spiked-razor? (Yes/No): \n>> ")
+        if "Spiked-razor" in inventory:
+            print("You already have this item!")
+            print("Inventory:")
+            print(inventory)
+
+
 def bathroom_ex():
     location = "Bathroom Stall"
     direction = ""
@@ -106,7 +165,7 @@ def bathroom_ex():
     print("You are in the ", location)
     print()
     time.sleep(1)
-    print("You see a girl holding out two cards; one Red, one Blue. Her eyes and hair are completely Black.")
+    print("You see a girl holding out two cards; one Red, one Blue. Her eyes are Black, and hair is also completely Black.")
     time.sleep(2)
     print("You remember reading about a story of a ghost that kills you regardless of the color you choose.")
     time.sleep(1)
