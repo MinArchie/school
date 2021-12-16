@@ -5,15 +5,17 @@ import time
 # values: (keys)-> direction, (value)-> room
 rooms = {
     "Corridor": {"Left": "Bathroom", "or Right": "Cafeteria"},
-    "Bathroom": {"Explore": "Red or Blue", "or Back": "Corridor"},
+    "Bathroom": {"Investigate": "Red or Blue", "or Back": "Corridor"},
     "Cafeteria": {"Right": "Staircase", "or Left": "Corridor"},
     "Staircase": {"Back to Cafeteria (Type 'Back')": "Cafeteria", "or Up": "Terrace", "or Down": "Waiting_Area"},
     "Terrace": {"Jump": "Death", "or Back": "Staircase"},
-    "Waiting_Area": {"Up": "Staircase", "or Exit": "Exit", "or Right": "Morgue", "or Left": "Operating_Room"},
+    "Waiting_Area": {"Up": "Staircase", "or Exit": "Exit", "or Right": "Morgue", "or Left": "Operating_Room", "or Inspect": "Find pepper Spray"},
     "Operating_Room": {"Back": "Waiting_Area"},
-    "Morgue": {"Back": "Waiting_Area"},
+    "Morgue": {"Body": "Unlock a letter", "Buzzing": "Death", "Back": "Waiting_Area"},
     "Exit": {"Back": "Waiting_Area", "or Try": "Finish"}
 }
+
+inventory = []
 
 
 # functions
@@ -68,7 +70,7 @@ def bathroom():
     time.sleep(1)
     print("*knock*.... *knock*")
     time.sleep(1)
-    print("\nWhat do you do? Explore the knocking or Head Back (go back to corridor) \n")
+    print("\nWhat do you do? Investigate the knocking or Head Back (go back to corridor) \n")
 
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
@@ -80,7 +82,7 @@ def bathroom():
         print()
         time.sleep(1)
         corridor()
-    elif direction == "explore":
+    elif direction == "investigate":
         print()
         time.sleep(1)
         bathroom_ex()
@@ -177,7 +179,6 @@ def cafeteria():
         print()
         cafeteria()
 
-
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
@@ -231,8 +232,8 @@ def terrace():
     print()
     print()
     print()
-    print("* ,   . *   `. *` . . *,")
-    print("  .  *  ` . * ,  . `  . ")
+    print("* ,   . +   `. *` . . +,   *  ` . + ,  . `  .")
+    print("  .  *  ` . + ,  . `  .   . +   `. *` . . + `")
 
     print("You are in the, ", location)
 
@@ -253,7 +254,7 @@ def terrace():
         print("You could come back here anytime, anyway.")
         staircase()
 
-    #secret ending
+    # secret ending
 
     elif direction == "jump":
         print()
@@ -311,6 +312,7 @@ def waiting_area():
         print("Never the less, you carry on.")
         print("")
         print("The Waiting_Area is connected to two other rooms and the Exit.")
+        print("You may inspect the area.")
         print("You may also go back up the staircase. (Type 'up')")
         print()
 
@@ -332,6 +334,16 @@ def waiting_area():
         elif direction == "exit":
             print()
             password()
+        elif direction == "inspect":
+            print("You navigate your way through the chairs.")
+            print("You see a door that leads to the cleaning closet.")
+            print("In there you find a bottle of pepper spray")
+            print("Pick it up?")
+
+
+
+            take_spray()
+
         else:
             print()
             print("Invalid move! \nOnly Enter Valid Statements.")
@@ -339,6 +351,57 @@ def waiting_area():
             print()
             print()
             print()
+            waiting_area()
+
+
+def take_spray():
+    take_the_spray = input("Yes/No: \n>> ").lower().strip()
+
+    if take_the_spray == "yes":
+        if "pepper spray" in inventory:
+            print("You already have this item!")
+            print("Inventory:")
+            print(inventory)
+        elif "pepper spray" not in inventory:
+            add_to_inventory("pepper spray")
+            print("PEPPER SPRAY added to inventory")
+            print("Inventory:")
+            print(inventory)
+            print("You head back to the waiting_area")
+            time.sleep(1)
+            waiting_area()
+        else:
+            print()
+            print("Invalid move! \nOnly Enter Valid Statements.")
+            time.sleep(1)
+            print()
+            print()
+            print()
+            take_the_spray = input("Take Spray? (Yes/No): \n>> ")
+            if "pepper spray" in inventory:
+                print("You already have this item!")
+                print("Inventory:")
+                print(inventory)
+                waiting_area()
+
+    elif take_the_spray == "no":
+        print("You leave the Pepper Spray in the cabinet.")
+        print("You head back to the waiting_area")
+        time.sleep(1)
+        waiting_area()
+
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        time.sleep(1)
+        print()
+        print()
+        print()
+        take_the_spray = input("Take Spray? (Yes/No): \n>> ")
+        if "pepper spray" in inventory:
+            print("You already have this item!")
+            print("Inventory:")
+            print(inventory)
             waiting_area()
 
 
@@ -449,16 +512,33 @@ def morgue():
     print("You are in the ", location)
 
     print()
-    print("You can go back to the Waiting_Area")
+    print("The Lights Flicker.\n")
+    print("This place gives you a bad vibe, but it might just be because of the dead body on the stretcher.\n")
+    print("A white sheet covers the body. The blood seeps through the fabric.")
+    print("The foot is uncovered. You can see the toe tag.")
+    print("At the same time, you hear a sharp buzzing sound.")
+    print("It originates from one of the body storage cabinets.")
+    print("What do you do? Inspect the Body or the Buzzing?")
+    print("(You may also go back to the Waiting_Area)")
+
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? \n>> ").strip().lower()
+    direction = input("Decision? \n>> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "back":
         print()
         waiting_area()
+    elif direction == "body":
+        print()
+        print("You cautiously make your way towards the body.")
+        print("Upon closer inspection, you notice that the foot is decomposing.")
+        print("The toe tag seems to be covered in mud. How unusual.")
+        print()
+        print("You dust off some of the mud. You see the letter 'C' written on it.")
+        print("Suddenly, the body sits up.")
+
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
@@ -467,6 +547,14 @@ def morgue():
         print()
         print()
         morgue()
+
+
+def add_to_inventory(item):
+    inventory.append(item)
+
+
+def delete_from_inventory(item):
+    inventory.remove(item)
 
 
 def restart_seq():
@@ -522,5 +610,3 @@ print("You realize you're in a hospital. You decide to get out and explore.")
 print()
 time.sleep(2)
 corridor()
-
-
