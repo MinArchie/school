@@ -37,7 +37,13 @@ rooms = {
         "or Inspect": "Find pepper Spray"
     },
     "Operating_Room": {
-        "Back": "Waiting_Area"
+        "Back": "Waiting_Area",
+        "Accept": "Death",
+        "Deny": {
+            "Crowbar": "No Death",
+            "Run": "Death",
+            "Bug_Spray": "Death"
+        }
     },
     "Morgue": {
         "Body": "Unlock a letter",
@@ -76,7 +82,7 @@ def white_room():
         print("It’s plain, clean, and impersonal.")
         print("You can’t jump out of the window; it’s grilled shut.")
         print("The walls are clean, immaculate. The floor— pristine. The bed is always made. ")
-        print("No matter how much you trash the place, no matter how much you destroy it, it reverts back to its original state.")
+        print("No matter how much you destroy the place, it reverts back to its original state.")
         print()
         white_room()
     else:
@@ -517,10 +523,9 @@ def take_spray():
         print()
         print()
         take_spray()
+# have to change this part to fit our new script
 
 
-
-# gotta change this part to fit our new script
 def password():
     location = "Exit"
     direction = ""
@@ -589,18 +594,36 @@ def operation_room():
     direction = ""
 
     print("You are in the ", location)
+    print()
+    print("'The Mad Surgeon', as you’ve come to call him, greets you.")
+    print("He wears his scrubs and a face mask and a face shield.")
+    print("He asks you if you want to get rid of your depression.")
+    print("What a concept. But maybe it’s worth another shot...")
+    print("All you know is that you can't kill him, but you can stall for time.")
+    print("Every time he 'dies', it only takes him a few minutes to come back to life.")
 
     print()
     print("You can go Back to the Waiting_Area")
     possible_moves = rooms[location].keys()
     print("Possible moves: ", *possible_moves)
 
-    direction = input("Move which direction? \n>> ").strip().lower()
+    direction = input("What do you do? \n>> ").strip().lower()
     print("You entered: ", direction)
 
     if direction == "back":
         print()
         waiting_area()
+    elif direction == "accept":
+        print("You lay on the bench, telling yourself that maybe this time he can actually cure you.")
+        print("You sigh as you hear him laugh. The Mad Surgeon tells you that all he wants from you are your organs.")
+        print("He congratulates you for being stupid enough to think anything could cure you.")
+        print("You hope you won’t wake up in the White Room again.")
+        print()
+        print("But of course, you do.")
+        white_room()
+    elif direction == "deny":
+        deny()
+
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
@@ -609,6 +632,60 @@ def operation_room():
         print()
         print()
         operation_room()
+
+
+def deny():
+    print("The surgeon charges at you with a scalpel.")
+    decide = input("What do you do?").lower().strip()
+    print("Possible moves: 'Inventory' or 'Run'")
+
+    if decide == "inventory":
+        print(inventory)
+        defend = input("Pick something to defend yourself with.").lower().strip()
+        if defend == "crowbar":
+            print("The surgeon tries to stab you with his scalpel.")
+            print("You block his attacks.")
+            print("You delt him a deadly blow with your crowbar and watch as his body flops to the ground.")
+            print()
+            print("You notice his ID card.")
+            print("It has the letter 'B' written on it.")
+            print()
+            print("Feeling a little shaky, you return to the Waiting_Area")
+            print()
+            waiting_area()
+        elif defend == "bug_spray":
+            print("The surgeon tries to stab you with his scalpel.")
+            print("You use the bug spray, but realize how ineffective it is against his surgical mask and face shield")
+            print(" How stupid! You try to run away, but he catches up to you.")
+            print()
+            print()
+            print("You wake up, again in the white room.")
+            white_room()
+        elif inventory == '':
+            print("Uh-oh. Looks like you have nothing to defend yourself with.")
+            print("Only thing you can do now, is run.")
+            print("The surgeon tries to stab you with his scalpel.")
+            print("You turn around and try to run")
+            print("But he catches up with you.")
+            print()
+            print("You wake up in the white room.")
+            print("Maybe next time you should find something to defend yourself with...")
+            white_room()
+        else:
+            print()
+            print("Invalid move! \nOnly Enter Valid Statements.")
+
+            print()
+            print()
+            print()
+            deny()
+    elif decide == "run":
+        print("The surgeon tries to stab you with his scalpel.")
+        print("You turn around and try to run")
+        print("But he catches up with you.")
+        print()
+        print("You wake up in the white room.")
+        white_room()
 
 
 def morgue():
@@ -671,9 +748,19 @@ def restart_seq():
 
         print()
         print()
-        print("You wake up groggy and unsure. It's dark, so you turn on the light.")
-        print("You realize you're in a hospital. You decide to get out and explore.")
-        corridor()
+        print("You're back here again.")
+        print("You know it's a dream. You just know.")
+        print("In the beginning, You could manipulate this dream however you liked.")
+        print("But now...")
+        print("But now you just don't have the strength.")
+        print("You've been here too long.")
+        print("You can't control it anymore. Now, it's the dream controls you.")
+        print("All you see is this constant nightmare.")
+        print("You, trapped in this twisted hospital, living and reliving the same thing again and again.")
+        print("You can't wake up. You can't die. If you die, you wake up back in this room.")
+        print("Last time, you died jumping off the terrace.")
+        print("You're not sure if it's going to be any different this time.")
+        white_room()
 
     elif answer1 == "no":
         print("Thank you for playing :)")
@@ -727,5 +814,6 @@ print("Last time, you died jumping off the terrace.")
 print("You're not sure if it's going to be any different this time.")
 
 print()
+
 
 white_room()
