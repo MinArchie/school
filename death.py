@@ -601,11 +601,11 @@ def operation_room():
     print("What a concept. But maybe it’s worth another shot...")
     print("All you know is that you can't kill him, but you can stall for time.")
     print("Every time he 'dies', it only takes him a few minutes to come back to life.")
+    print("Looks like he's alive again.")
 
     print()
     print("You can go Back to the Waiting_Area")
-    possible_moves = rooms[location].keys()
-    print("Possible moves: ", *possible_moves)
+    print("Possible moves: ", "Accept,", "Deny,", " or Back")
 
     direction = input("What do you do? \n>> ").strip().lower()
     print("You entered: ", direction)
@@ -636,32 +636,12 @@ def operation_room():
 
 def deny():
     print("The surgeon charges at you with a scalpel.")
-    decide = input("What do you do?").lower().strip()
     print("Possible moves: 'Inventory' or 'Run'")
+    decide = input("What do you do?: \n>>").lower().strip()
 
     if decide == "inventory":
         print(inventory)
-        defend = input("Pick something to defend yourself with.").lower().strip()
-        if defend == "crowbar":
-            print("The surgeon tries to stab you with his scalpel.")
-            print("You block his attacks.")
-            print("You delt him a deadly blow with your crowbar and watch as his body flops to the ground.")
-            print()
-            print("You notice his ID card.")
-            print("It has the letter 'B' written on it.")
-            print()
-            print("Feeling a little shaky, you return to the Waiting_Area")
-            print()
-            waiting_area()
-        elif defend == "bug_spray":
-            print("The surgeon tries to stab you with his scalpel.")
-            print("You use the bug spray, but realize how ineffective it is against his surgical mask and face shield")
-            print(" How stupid! You try to run away, but he catches up to you.")
-            print()
-            print()
-            print("You wake up, again in the white room.")
-            white_room()
-        elif inventory == '':
+        if not inventory:
             print("Uh-oh. Looks like you have nothing to defend yourself with.")
             print("Only thing you can do now, is run.")
             print("The surgeon tries to stab you with his scalpel.")
@@ -672,13 +652,35 @@ def deny():
             print("Maybe next time you should find something to defend yourself with...")
             white_room()
         else:
-            print()
-            print("Invalid move! \nOnly Enter Valid Statements.")
+            defend = input("Pick something to defend yourself with. \n>> ").lower().strip()
+            if defend == "crowbar":
+                print("The surgeon tries to stab you with his scalpel.")
+                print("You block his attacks.")
+                print("You delt him a deadly blow with your crowbar and watch as his body flops to the ground.")
+                print()
+                print("You notice his ID card.")
+                print("It has the letter 'B' written on it.")
+                print()
+                print("Feeling a little shaky, you return to the Waiting_Area")
+                print()
+                waiting_area()
+            elif defend == "bug_spray":
+                print("The surgeon tries to stab you with his scalpel.")
+                print("You use the bug spray, but realize how ineffective it is against his surgical mask and face shield")
+                print(" How stupid! You try to run away, but he catches up to you.")
+                print()
+                print()
+                print("You wake up, again in the white room.")
+                white_room()
 
-            print()
-            print()
-            print()
-            deny()
+            else:
+                print()
+                print("Invalid move! \nOnly Enter Valid Statements.")
+
+                print()
+                print()
+                print()
+                deny()
     elif decide == "run":
         print("The surgeon tries to stab you with his scalpel.")
         print("You turn around and try to run")
@@ -686,6 +688,14 @@ def deny():
         print()
         print("You wake up in the white room.")
         white_room()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+
+        print()
+        print()
+        print()
+        deny()
 
 
 def morgue():
@@ -814,6 +824,5 @@ print("Last time, you died jumping off the terrace.")
 print("You're not sure if it's going to be any different this time.")
 
 print()
-
 
 white_room()
