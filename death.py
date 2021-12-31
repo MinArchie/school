@@ -698,7 +698,7 @@ def buzz():
     print("\"It's just flies,\" you think.")
     print("Something feels off. But what?")
     print("It's your skin.")
-    print("Crap. They are feeding on your skin!")
+    print("Oh no. They are feeding on your skin!")
     print("Possible moves: Inventory or run")
     decide = input("What do you do? \n>> ").strip().lower()
 
