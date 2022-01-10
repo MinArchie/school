@@ -65,15 +65,16 @@ def white_room():
     location = "White_Room"
     direction = ""
 
+    inventory.clear()
     print()
     print("A white room. A single bed. One window. ")
     print("There is a door that leads to the corridor")
 
     possible_moves = rooms[location].keys()
-    print("possible moves: ", *possible_moves)
+    print("possible moves:", *possible_moves)
 
-    direction = input("\nWhat will you do? \n> ").strip().lower()
-    print("You entered: ", direction)
+    direction = input("\nWhat will you do? \n> ").lower().strip()
+    print("You entered:", direction)
 
     if direction == "door":
         print()
@@ -85,6 +86,10 @@ def white_room():
         print("No matter how much you destroy the place, it reverts back to its original state.")
         print()
         white_room()
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print("Please enter valid statements")
         white_room()
@@ -99,17 +104,17 @@ def corridor():
         print()
         print("_______________________")
         print("_______________________")
-        print("You are in the ", location)
+        print("You are in the", location)
 
         print()
         print("It is a long, straight hallway. White floors, white walls.")
         print("To the left is the bathroom. To the right, the cafeteria.")
 
         possible_moves = rooms[location].keys()
-        print("possible moves: ", *possible_moves)
+        print("possible moves:", *possible_moves)
 
-        direction = input("\nMove which direction? \n> ").strip().lower()
-        print("You entered: ", direction)
+        direction = input("\nMove which direction? \n> ").lower().strip()
+        print("You entered:", direction)
 
         if direction == "left":
             print()
@@ -117,6 +122,10 @@ def corridor():
         elif direction == "right":
             print()
             cafeteria()
+        elif direction == "quit":
+            print()
+            print("GAME TERMINATING...")
+            exit()
         else:
             print()
             print("Invalid move! \nOnly Enter Valid Statements.")
@@ -133,7 +142,7 @@ def bathroom():
     print()
     print()
     print()
-    print("You are in the ", location)
+    print("You are in the", location)
 
     print("A row of toilet stalls. A mirror. Sinks. A ghost that knocks.")
 
@@ -150,26 +159,27 @@ def bathroom():
     print("\nWhat do you do? Investigate the knocking or Head Back (go back to corridor) \n")
 
     possible_moves = rooms[location].keys()
-    print("Possible moves: ", *possible_moves)
+    print("Possible moves:", *possible_moves)
 
-    direction = input("Decision? \n> ").strip().lower()
-    print("You entered: ", direction)
+    direction = input("Decision? \n> ").lower().strip()
+    print("You entered:", direction)
 
     if direction == "back":
         print()
-
         corridor()
     elif direction == "investigate":
         print()
-
         bathroom_ex()
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
         print()
         print()
         print()
-
         bathroom()
 
 
@@ -180,7 +190,7 @@ def bathroom_ex():
     print()
     print()
     print()
-    print("You are in the ", location)
+    print("You are in the", location)
     print()
 
     print("A young girl, holding out two cards. One red and One blue.")
@@ -232,13 +242,16 @@ def bathroom_ex():
 
         corridor()
 
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
         print()
         print()
         print()
-
         bathroom_ex()
 
 
@@ -246,7 +259,7 @@ def cafeteria():
     location = "Cafeteria"
     direction = ""
 
-    print("You are in the ", location)
+    print("You are in the", location)
 
     print("It seems to be connected to the stairway.")
 
@@ -272,7 +285,6 @@ def cafeteria():
         print("The sight of the 'food' still makes you uncomfortable")
         print("Perhaps you could go up for some fresh air or go down.")
         staircase()
-
     elif answer1 == "eat":
         print()
         print("You don’t understand what compels you to do this.")
@@ -284,44 +296,32 @@ def cafeteria():
         white_room()
     elif answer1 == "back":
         print()
-
         corridor()
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
-
         print()
         print()
         print()
         cafeteria()
 
-    possible_moves = rooms[location].keys()
-    print("Possible moves: ", *possible_moves)
-
-    direction = input("Move which direction? \n>> ").strip().lower()
-    print("You entered: ", direction)
-
-    if direction == "right":
-        print("The sight of the 'food' still makes you uncomfortable")
-        print("Perhaps you could go up for some fresh air or go down.")
-        staircase()
-
-    elif direction == "left":
-        print()
-        corridor()
 
 
 def staircase():
     location = "Staircase"
     direction = ""
 
-    print("You are in the ", location)
+    print("You are in the", location)
 
     possible_moves = rooms[location].keys()
-    print("Possible moves: ", *possible_moves)
+    print("Possible moves:", *possible_moves)
 
-    direction = input("Move which direction? \n>> ").strip().lower()
-    print("You entered: ", direction)
+    direction = input("Move which direction? \n>> ").lower().strip()
+    print("You entered:", direction)
 
     if direction == "up":
         print()
@@ -332,10 +332,13 @@ def staircase():
     elif direction == "back":
         print()
         cafeteria()
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
-
         print()
         print()
         staircase()
@@ -361,18 +364,17 @@ def take_crowbar():
             print("CROWBAR added to inventory")
             print("Inventory:")
             print(inventory)
-
             terrace()
-
         elif take_the_crowbar == "no":
             print("You leave the Crowbar in the Terrace.")
-
             terrace()
-
+        elif take_the_crowbar == "quit":
+            print()
+            print("GAME TERMINATING...")
+            exit()
         else:
             print()
             print("Invalid move! \nOnly Enter Valid Statements.")
-
             print()
             print()
             print()
@@ -399,7 +401,7 @@ def terrace():
     possible_moves = rooms[location].keys()
     print("Possible moves:", *possible_moves)
 
-    direction = input("Decision? \n>> ").strip().lower()
+    direction = input("Decision? \n>> ").lower().strip()
     print("You entered:", direction)
 
     if direction == "back":
@@ -407,7 +409,6 @@ def terrace():
         print("As tempting as a trip to the stars sounds like, you decide to keep fighting.")
         print("You could come back here anytime, anyway.")
         staircase()
-
     elif direction == "jump":
         print("Do you really wish to jump? Nothing special would happen. You’ll just die.")
         print("AKA wake up in the white room.")
@@ -421,11 +422,13 @@ def terrace():
         print()
         print()
         white_room()
-
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
-
         print()
         print()
         print()
@@ -439,7 +442,7 @@ def waiting_area():
     while direction != "exit":
 
         print()
-        print("You are in the ", location)
+        print("You are in the", location)
 
         print("The deeper levels always felt strange to you.")
         print("The Waiting Area is nothing much, except for the safe locker.")
@@ -449,10 +452,10 @@ def waiting_area():
         print()
 
         possible_moves = rooms[location].keys()
-        print("possible moves: ", *possible_moves)
+        print("possible moves:", *possible_moves)
 
-        direction = input("Move which direction? \n>> ").strip().lower()
-        print("You entered: ", direction)
+        direction = input("Move which direction? \n>> ").lower().strip()
+        print("You entered:", direction)
 
         if direction == "left":
             print()
@@ -477,11 +480,17 @@ def waiting_area():
                 print()
                 print("There is nothing left to inspect")
                 waiting_area()
-
+            elif direction == "quit":
+                print()
+                print("GAME TERMINATING...")
+                exit()
+        elif direction == "quit":
+            print()
+            print("GAME TERMINATING...")
+            exit()
         else:
             print()
             print("Invalid move! \nOnly Enter Valid Statements.")
-
             print()
             print()
             print()
@@ -502,39 +511,40 @@ def take_spray():
             print("Inventory:")
             print(inventory)
             print("You head back to the waiting_area")
-
             waiting_area()
+        elif take_the_spray == "quit":
+            print()
+            print("GAME TERMINATING...")
+            exit()
         else:
             print()
             print("Invalid move! \nOnly Enter Valid Statements.")
-
             print()
             print()
             print()
             take_spray()
-
     elif take_the_spray == "no":
         print("You leave the Bug spray in the cabinet.")
         print("You head back to the waiting_area")
-
         waiting_area()
-
+    elif take_the_spray == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
-
         print()
         print()
         print()
         take_spray()
-# have to change this part to fit our new script
 
 
 def operation_room():
     location = "Operating_Room"
     direction = ""
 
-    print("You are in the ", location)
+    print("You are in the", location)
     print()
     print("'The Mad Surgeon', as you’ve come to call him, greets you.")
     print("He wears his scrubs and a face mask and a face shield.")
@@ -548,8 +558,8 @@ def operation_room():
     print("You can go Back to the Waiting_Area")
     print("Possible moves: ", "Accept,", "Deny,", " or Back")
 
-    direction = input("What do you do? \n>> ").strip().lower()
-    print("You entered: ", direction)
+    direction = input("What do you do? \n>> ").lower().strip()
+    print("You entered:", direction)
 
     if direction == "back":
         print()
@@ -564,11 +574,13 @@ def operation_room():
         white_room()
     elif direction == "deny":
         deny()
-
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
-
         print()
         print()
         print()
@@ -593,7 +605,7 @@ def deny():
             print("Maybe next time you should find something to defend yourself with...")
             white_room()
         else:
-            defend = input("Pick something to defend yourself with. \n>> ").lower().strip()
+            defend = input("Pick something to defend yourself with. \n>> ").lower().replace(" ","")
             if defend == "crowbar":
                 print("The surgeon tries to stab you with his scalpel.")
                 print("You block his attacks.")
@@ -613,11 +625,13 @@ def deny():
                 print()
                 print("You wake up in the white room, yet again.")
                 white_room()
-
+            elif defend == "quit":
+                print()
+                print("GAME TERMINATING...")
+                exit()
             else:
                 print()
                 print("Invalid move! \nOnly Enter Valid Statements.")
-
                 print()
                 print()
                 print()
@@ -629,10 +643,13 @@ def deny():
         print()
         print("You wake up in the white room.")
         white_room()
+    elif decide == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
-
         print()
         print()
         print()
@@ -643,7 +660,7 @@ def morgue():
     location = "Morgue"
     direction = ""
 
-    print("You are in the ", location)
+    print("You are in the", location)
 
     print()
     print("The Lights Flicker.\n")
@@ -658,9 +675,9 @@ def morgue():
     print("(You may also go back to the Waiting_Area)")
 
     possible_moves = rooms[location].keys()
-    print("Possible moves: ", *possible_moves)
+    print("Possible moves:", *possible_moves)
 
-    direction = input("Decision? \n>> ").strip().lower()
+    direction = input("Decision? \n>> ").lower().strip()
     print("You entered: ", direction)
 
     if direction == "back":
@@ -677,7 +694,10 @@ def morgue():
         print("Scared to death, you run back to the waiting room.")
     elif direction == "buzzing":
         buzz()
-
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
@@ -698,9 +718,9 @@ def buzz():
     print("\"It's just flies,\" you think.")
     print("Something feels off. But what?")
     print("It's your skin.")
-    print("Oh no. They are feeding on your skin!")
+    print("Crap. They are feeding on your skin!")
     print("Possible moves: Inventory or run")
-    decide = input("What do you do? \n>> ").strip().lower()
+    decide = input("What do you do? \n>> ").lower().strip()
 
     if decide == "inventory":
         print(inventory)
@@ -714,8 +734,12 @@ def buzz():
             print("You wake up in the white room.")
             print("Maybe next time you should find something to defend yourself with...")
             white_room()
+        elif decide == "quit":
+            print()
+            print("GAME TERMINATING...")
+            exit()
         else:
-            defend = input("Pick something to defend yourself with. \n>> ").strip().lower()
+            defend = input("Pick something to defend yourself with. \n>> ").lower().replace(" ","")
             if defend == "bugspray":
                 print()
                 print("The flies won't leave you alone.")
@@ -737,11 +761,13 @@ def buzz():
                 print()
                 print("You wake up, again in the white room.")
                 white_room()
-
+            elif defend == "quit":
+                print()
+                print("GAME TERMINATING...")
+                exit()
             else:
                 print()
                 print("Invalid move! \nOnly Enter Valid Statements.")
-
                 print()
                 print()
                 print()
@@ -754,10 +780,13 @@ def buzz():
         print()
         print("You wake up in the white room.")
         white_room()
+    elif decide == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
     else:
         print()
         print("Invalid move! \nOnly Enter Valid Statements.")
-
         print()
         print()
         print()
@@ -779,18 +808,16 @@ def password():
         possible_moves = rooms[location].keys()
         print("possible moves: ", *possible_moves)
 
-        direction = input("Your choice? \n>> ").strip().lower()
+        direction = input("Your choice? \n>> ").lower().strip()
         print("You entered: ", direction)
 
         if direction == "back":
             print()
             waiting_area()
-
         elif direction == "try":
             word = "bird"
-            guess = input("Guess the 4-letter word (You have only 2 tries): ").strip().lower()
+            guess = input("Guess the 4-letter word (You have only 2 tries): ").lower().strip()
             tries = 1
-
             if guess != word:
                 print()
                 print("INCORRECT PASSWORD.")
@@ -798,28 +825,27 @@ def password():
                 tries += 1
                 guess = input("Guess the 4-letter word: ")
             if guess != word and tries == 2:
-
                 print("INCORRECT PASSWORD")
                 print("You got it wrong.")
                 print("A tiny part of you wished that this meant you would die. For real.")
                 print("But reality is often disappointing.")
-
                 print()
                 print()
                 print("You're back here again.")
                 print("Just like every other time.")
                 print("Death just doesn't seem to exist here.")
                 white_room()
-
             print()
             print("CORRECT PASSWORD")
             print()
             safe()
-
+        elif direction == "quit":
+            print()
+            print("GAME TERMINATING...")
+            exit()
         else:
             print()
             print("Invalid move! \nOnly Enter Valid Statements.")
-
             print()
             print()
             print()
@@ -873,7 +899,7 @@ def terrace_alt():
 
     print("Possible moves: Stay or Jump")
 
-    direction = input("Decision? \n>> ").strip().lower()
+    direction = input("Decision? \n>> ").lower().strip()
     print("You entered:", direction)
 
     if direction == "stay":
@@ -972,18 +998,25 @@ def terrace_alt():
         print("Congratulations! You made it!")
         print()
         restart_seq()
+    elif direction == "quit":
+        print()
+        print("GAME TERMINATING...")
+        exit()
+    else:
+        print()
+        print("Invalid move! \nOnly Enter Valid Statements.")
+        print()
+        print()
+        print()
+        terrace_alt()
 
 
 def add_to_inventory(item):
     inventory.append(item)
 
 
-def delete_from_inventory(item):
-    inventory.remove(item)
-
-
 def restart_seq():
-    answer1 = input("Replay Game? (Yes/No) \n>> ").strip().lower()
+    answer1 = input("Replay Game? (Yes/No) \n>> ").lower().strip()
     if answer1 == "yes":
         print(""*5)
         print("RESTARTING...")
@@ -1041,13 +1074,16 @@ print()
 
 print("You're back here again.")
 print("You know it's a dream, that’s for sure.")
+cont = input("(Press Enter to Continue...)")
 print("But you're stuck here. Stuck for too long.")
 print("You can't control all of it. It feels like it's the dream that controls you.")
+cont = input()
 print("You are trapped in this twisted hospital")
 print("You can't wake up. You can't die. If you die, you wake up back in this room.")
+cont = input()
 print("All you want is to be freed.")
 
-
+cont = input()
 print()
 
 
